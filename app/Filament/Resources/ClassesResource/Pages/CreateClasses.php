@@ -10,9 +10,16 @@ class CreateClasses extends CreateRecord
 {
     protected static string $resource = ClassesResource::class;
 
-     // redirects
+    // redirects
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+    // comment this to not showing the delete button
+    protected function getActions(): array
+    {
+        return [
+            // Actions\DeleteAction::make(),
+        ];
     }
 }

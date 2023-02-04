@@ -14,4 +14,11 @@ class EditSection extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
+    // comment this to not showing the delete button
+    protected function getActions(): array
+    {
+        return [
+            // Actions\DeleteAction::make(),
+        ];
+    }
 }

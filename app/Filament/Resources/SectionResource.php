@@ -31,10 +31,10 @@ class SectionResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->autofocus()
-                    ->unique()
-                    // ->unique(ignoreRecord: true, callback: function (Closure $get, Unique $rule) {
-                    //     return $rule->where('class_id', $get('class_id'));
-                    // })
+                    // ->unique()
+                    ->unique(ignoreRecord: true, callback: function (Closure $get, Unique $rule) {
+                        return $rule->where('class_id', $get('class_id'));
+                    })
                     ->placeholder('Enter Section Name'),
                 Select::make('class_id')
                     ->relationship('class', 'name')

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ClassesResource\RelationManagers;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Columns\TextColumn;
 
 class ClassesResource extends Resource
@@ -32,8 +33,8 @@ class ClassesResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->autofocus()
-                    ->unique()
-                    // ->unique(ignoreRecord: true)
+                    // ->unique()
+                    ->unique(ignoreRecord: true)
                     ->placeholder('Enter a Class Name'),
             ]);
     }
@@ -46,6 +47,12 @@ class ClassesResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->sortable(),
+
+                TagsColumn::make('sections.name'),
+                TextColumn::make('students_count')
+                    ->counts('students')
+                    ->label('Students Count'),
+                    
             ])
             ->filters([
                 //
